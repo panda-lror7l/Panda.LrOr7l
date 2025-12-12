@@ -1,10 +1,10 @@
-/* 전체 스타일 */
 body {
     font-family: 'Noto Sans KR', sans-serif;
     margin: 0;
     padding: 0;
     background: linear-gradient(135deg,#B3E5FC,#F8BBD0);
     color: #333;
+    scroll-behavior: smooth;
 }
 
 .container {
@@ -13,7 +13,6 @@ body {
     padding: 20px;
 }
 
-/* 헤더 */
 header {
     background-color: rgba(255,255,255,0.95);
     position: sticky;
@@ -50,7 +49,6 @@ nav a:hover {
     color: #EC407A;
 }
 
-/* 카드 공통 */
 .profile-card, .career-card, .contact-card, .skill-card, .sns-card {
     background-color: rgba(255,255,255,0.9);
     padding: 30px;
@@ -59,7 +57,6 @@ nav a:hover {
     margin-bottom: 40px;
 }
 
-/* 프로필 */
 .profile-img {
     width: 150px;
     height: 150px;
@@ -87,18 +84,9 @@ nav a:hover {
     text-decoration: underline;
 }
 
-/* 경력 */
-.career-card ul {
-    list-style: none;
-    padding: 0;
-}
+.career-card ul { list-style: none; padding: 0; }
+.career-card li { margin: 12px 0; font-size: 16px; }
 
-.career-card li {
-    margin: 12px 0;
-    font-size: 16px;
-}
-
-/* 1:1 문의 */
 form input, form textarea {
     display: block;
     margin: 10px auto;
@@ -119,22 +107,13 @@ form button {
     border-radius: 5px;
 }
 
-form button:hover {
-    background-color: #EC407A;
-}
+form button:hover { background-color: #EC407A; }
 
-/* 스킬 */
-.skill-card h2 {
-    margin-bottom: 20px;
-}
+.skill-card h2 { margin-bottom: 20px; }
 
-.skill {
-    margin: 15px 0;
-}
+.skill { margin: 15px 0; }
 
-.skill span {
-    font-weight: bold;
-}
+.skill span { font-weight: bold; }
 
 .skill-bar {
     width: 100%;
@@ -153,7 +132,6 @@ form button:hover {
     transition: width 1.5s ease;
 }
 
-/* SNS */
 .sns-card a {
     display: inline-block;
     margin: 10px 15px;
@@ -163,11 +141,8 @@ form button:hover {
     font-size: 18px;
 }
 
-.sns-card a:hover {
-    color: #004D40;
-}
+.sns-card a:hover { color: #004D40; }
 
-/* 반응형 모바일 */
 @media(max-width:768px){
     .profile-img{width:120px;height:120px;}
     .profile-card h2,.skill-card h2,.sns-card h2,.career-card h2{font-size:22px;}
