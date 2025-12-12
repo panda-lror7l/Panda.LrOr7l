@@ -1,87 +1,255 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>판다의 프로필</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            background: linear-gradient(135deg, #fad7ff, #c8e7ff);
-            font-family: 'Arial', sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
+<meta charset="UTF-8">
+<title>PANDA WORLD - MAIN MENU</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        .card {
-            background: white;
-            width: 330px;
-            padding: 25px;
-            border-radius: 20px;
-            text-align: center;
-            box-shadow: 0 0 30px rgba(0,0,0,0.15);
-            border: 3px solid #ffeaff;
-        }
+<style>
+    /* 🔥 움직이는 배경 */
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Arial', sans-serif;
+        background: linear-gradient(135deg, #ffd6ff, #c6e1ff, #ffeacb);
+        background-size: 400% 400%;
+        animation: bgMove 6s infinite ease-in-out;
+        overflow: hidden;
+    }
+    @keyframes bgMove {
+        0%{ background-position: 0% 50%; }
+        50%{ background-position: 100% 50%; }
+        100%{ background-position: 0% 50%; }
+    }
 
-        .profile-img {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 4px solid #ffcdfa;
-            box-shadow: 0 0 15px rgba(255, 148, 230, 0.5);
-        }
+    /* 전체 중앙 */
+    .center {
+        position: absolute;
+        top: 50%; left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        width: 350px;
+    }
 
-        .name {
-            font-size: 28px;
-            margin-top: 15px;
-            color: #333;
-            font-weight: bold;
-            text-shadow: 0 0 5px #ffd6ff;
-        }
+    /* 🐼 로고 */
+    .logo {
+        font-size: 45px;
+        font-weight: 900;
+        color: #6a4cff;
+        text-shadow: 0 0 15px white;
+        margin-bottom: 25px;
+        animation: logoFloat 2.5s infinite ease-in-out;
+    }
+    @keyframes logoFloat {
+        0% { transform: translateY(0); }
+        50% { transform: translateY(-10px); }
+        100% { transform: translateY(0); }
+    }
 
-        .desc {
-            color: #555;
-            font-size: 15px;
-            margin-top: 8px;
-        }
+    /* 🐼 프로필 사진 둥둥 */
+    .profile {
+        width: 160px;
+        height: 160px;
+        border-radius: 50%;
+        border: 5px solid #fff0fe;
+        box-shadow: 0 0 25px rgba(255, 150, 230, 0.8);
+        object-fit: cover;
+        animation: floating 3s infinite ease-in-out;
+    }
+    @keyframes floating {
+        0% { transform: translateY(0px); }
+        50% { transform: translateY(-12px); }
+        100% { transform: translateY(0px); }
+    }
 
-        .btn {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 12px 20px;
-            background: #9ec9ff;
-            color: white;
-            text-decoration: none;
-            font-size: 16px;
-            border-radius: 15px;
-            font-weight: bold;
-            box-shadow: 0 5px 0 #6fa8ff;
-            transition: 0.15s;
-        }
+    /* 버튼 */
+    .menu-btn {
+        display: block;
+        margin: 18px auto;
+        width: 70%;
+        padding: 15px;
+        font-size: 20px;
+        font-weight: bold;
+        text-decoration: none;
+        color: white;
+        border-radius: 14px;
+        background: #7c8bff;
+        box-shadow: 0 8px #4957d9;
+        transition: 0.15s;
+    }
+    .menu-btn:hover { transform: translateY(-5px); }
+    .menu-btn:active { transform: translateY(4px); box-shadow: 0 4px #4957d9; }
 
-        .btn:active {
-            transform: translateY(5px);
-            box-shadow: 0 0 0 #6fa8ff;
-        }
-    </style>
+    /* 팝업 배경 */
+    .popup-bg {
+        position: fixed;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        background: rgba(0,0,0,0.55);
+        display: none;
+        justify-content: center;
+        align-items: center;
+        z-index: 20;
+    }
+    .popup {
+        width: 80%;
+        max-width: 360px;
+        background: white;
+        border-radius: 18px;
+        padding: 25px;
+        text-align: left;
+        box-shadow: 0 0 25px rgba(255,150,230,0.8);
+        animation: openWindow .25s ease;
+    }
+    @keyframes openWindow {
+        from { transform: scale(0.85); opacity: 0; }
+        to { transform: scale(1); opacity: 1; }
+    }
+
+    .popup-title {
+        font-size: 22px;
+        font-weight: bold;
+        text-align: center;
+        margin-bottom: 15px;
+        color: #6a4cff;
+    }
+
+    .career-list {
+        line-height: 1.7;
+        font-size: 15px;
+        color: #333;
+    }
+
+    .close {
+        display: block;
+        width: 100%;
+        margin-top: 18px;
+        padding: 12px;
+        background: #ff93c6;
+        color: white;
+        text-align: center;
+        border-radius: 10px;
+        font-weight: bold;
+        text-decoration: none;
+        box-shadow: 0 4px #d46da2;
+    }
+</style>
 </head>
+
 <body>
 
-    <div class="card">
-        <img class="profile-img" 
-             src="https://cdn.discordapp.com/attachments/1394979391938887692/1449072282369786007/IMG_4878.jpg?ex=693d913a&is=693c3fba&hm=9d88051a0419d5dd153cadd82ceca735089ca97a1b8075c4850e4b366c871b41&" 
-             alt="프로필 이미지">
+<div class="center">
 
-        <div class="name">판다</div>
+    <div class="logo">PANDA WORLD</div>
 
-        <div class="desc">귀여운 게임 느낌의 프로필 사이트 🎮💗</div>
+    <img class="profile"
+         src="https://cdn.discordapp.com/attachments/1394979391938887692/1449072282369786007/IMG_4878.jpg"
+         alt="판다">
 
-        <a class="btn" href="https://discord.gg/C76Mj5NQGj" target="_blank">디스코드 바로가기</a>
+    <!-- 메뉴 버튼 -->
+    <a class="menu-btn" href="#" onclick="openProfile()">🎮 START</a>
+    <a class="menu-btn" href="#" onclick="openCareer()">📜 경력</a>
+    <a class="menu-btn" href="https://discord.gg/C76Mj5NQGj" target="_blank">🚒 소방서 민원창구</a>
+    <a class="menu-btn" href="https://www.youtube.com/@panda_LrOr7l" target="_blank">📹 유튜브</a>
+    <a class="menu-btn" href="#" onclick="openDM()">💌 1:1 메시지</a>
+    <a class="menu-btn" href="#" onclick="openSettings()">⚙ 설정</a>
+
+</div>
+
+<!-- 📌 경력 팝업 -->
+<div class="popup-bg" id="popup-career">
+    <div class="popup">
+        <div class="popup-title">📜 판다의 경력</div>
+
+        <div class="career-list">
+            • 동화성의료원 — <b>6급 을 관리팀장</b><br>
+            • 행정복지센터 — <b>6급 갑 선임행정관</b><br>
+            • 연홧시 — <b>부대표</b><br>
+            • 동탄카 — <b>사원</b><br>
+            • 더 프라이빗 — <b>부대표</b><br>
+            • 화성동부소방서 — <b>행정과장</b><br>
+            • … 더 추가 가능!
+        </div>
+
+        <a class="close" onclick="closeCareer()">닫기</a>
     </div>
+</div>
+
+<!-- 📌 1:1 메시지 팝업 -->
+<div class="popup-bg" id="popup-dm">
+    <div class="popup">
+        <div class="popup-title">💌 판다에게 메시지 보내기</div>
+
+        <div class="career-list">
+            이름:<br>
+            <input id="dm-name" style="width:100%; padding:8px; margin-bottom:10px; border-radius:8px;" placeholder="이름 또는 닉네임">
+
+            메시지:<br>
+            <textarea id="dm-message" style="width:100%; height:90px; padding:8px; border-radius:8px;" placeholder="보낼 내용을 입력하세요"></textarea>
+        </div>
+
+        <a class="menu-btn" style="width:100%; margin-top:15px;" onclick="sendDM()">📤 보내기</a>
+        <a class="close" onclick="closeDM()">닫기</a>
+    </div>
+</div>
+
+<!-- 📌 설정 팝업 -->
+<div class="popup-bg" id="popup-settings">
+    <div class="popup">
+        <div class="popup-title">⚙ 설정</div>
+        <div class="career-list">
+            • 테마 변경 (추가 가능)<br>
+            • 언어 설정 (추가 가능)<br>
+            • 사운드 ON/OFF (추가 가능)<br>
+        </div>
+        <a class="close" onclick="closeSettings()">닫기</a>
+    </div>
+</div>
+
+<script>
+    function openCareer(){ document.getElementById("popup-career").style.display = "flex"; }
+    function closeCareer(){ document.getElementById("popup-career").style.display = "none"; }
+
+    function openDM(){ document.getElementById("popup-dm").style.display = "flex"; }
+    function closeDM(){ document.getElementById("popup-dm").style.display = "none"; }
+
+    function openSettings(){ document.getElementById("popup-settings").style.display = "flex"; }
+    function closeSettings(){ document.getElementById("popup-settings").style.display = "none"; }
+
+    function openProfile(){
+        alert("프로필 화면은 다음에 만들어줄게! (스탯/레벨/스킨 추가 가능🔥)");
+    }
+
+    /* 🔥 1:1 DM Webhook 메시지 전송 */
+    function sendDM(){
+        const name = document.getElementById("dm-name").value;
+        const message = document.getElementById("dm-message").value;
+
+        if (!name || !message){
+            alert("이름과 메시지를 모두 입력해주세요!");
+            return;
+        }
+
+        const webhookUrl = "https://discord.com/api/webhooks/1449075418513539264/r_JqXqlW1_U9qO1dYeh1uLVWVWC4OImBBugs86yf1HehB9ZkrjFlN3tuGG59ggNnSvlU";
+
+        const payload = {
+            content: `📩 **새 1:1 메시지 도착!**\n**보낸 사람:** ${name}\n**메시지:**\n${message}`
+        };
+
+        fetch(webhookUrl, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload)
+        })
+        .then(() => {
+            alert("메시지가 전송되었습니다!");
+            closeDM();
+        })
+        .catch(() => {
+            alert("전송 오류 발생!");
+        });
+    }
+</script>
 
 </body>
 </html>
