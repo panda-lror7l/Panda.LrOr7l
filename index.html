@@ -36,7 +36,8 @@ body{margin:0;font-family:Arial,sans-serif;background:var(--bg);color:var(--text
 .cta-row{display:flex;gap:12px;flex-wrap:wrap}
 .btn{display:inline-flex;align-items:center;gap:10px;padding:11px 16px;border-radius:12px;font-weight:800;border:none;cursor:pointer;text-decoration:none;background:linear-gradient(90deg,var(--accent), #8fa2ff);color:#fff;box-shadow:0 10px rgba(0,0,0,0.08)}
 .btn.ghost{background:transparent;color:var(--accent);border:1.5px solid rgba(106,76,255,0.12);box-shadow:none}
-.section{margin-top:22px;display:grid;grid-template-columns:1fr 360px;gap:20px;}
+.section{margin-top:22px;display:grid;grid-template-columns:1fr 360px;gap:20px;opacity:0;transform:translateY(50px);transition: all 0.8s ease-out;}
+.section.visible{opacity:1;transform:translateY(0);}
 .card{background:var(--card);padding:18px;border-radius:14px;box-shadow:var(--shadow);}
 .card h3{margin:0 0 12px;color:var(--accent);font-size:16px}
 .timeline{position:relative;padding-left:20px}
@@ -64,7 +65,7 @@ body{margin:0;font-family:Arial,sans-serif;background:var(--bg);color:var(--text
 
   <!-- HERO -->
   <main id="home" class="page">
-    <section class="hero">
+    <section class="hero section">
       <div class="hero-left">
         <img class="avatar avatar-float" src="https://cdn.discordapp.com/attachments/1394979391938887692/1449072282369786007/IMG_4878.jpg" alt="Panda profile">
       </div>
@@ -91,7 +92,7 @@ body{margin:0;font-family:Arial,sans-serif;background:var(--bg);color:var(--text
   </main>
 
   <!-- CAREER -->
-  <section id="career" class="page" aria-hidden="true">
+  <section id="career" class="page section" aria-hidden="true">
     <div class="card">
       <h3>CAREER</h3>
       <div class="timeline" style="margin-top:12px;">
@@ -106,7 +107,7 @@ body{margin:0;font-family:Arial,sans-serif;background:var(--bg);color:var(--text
   </section>
 
   <!-- CONTACT -->
-  <section id="contact" class="page" aria-hidden="true">
+  <section id="contact" class="page section" aria-hidden="true">
     <div class="card">
       <h3>CONTACT</h3>
       <p class="muted">Email: <a href="mailto:edong651629@gmail.com">edong651629@gmail.com</a></p>
@@ -114,7 +115,7 @@ body{margin:0;font-family:Arial,sans-serif;background:var(--bg);color:var(--text
   </section>
 
   <!-- POSTS -->
-  <section id="posts" class="page" aria-hidden="true">
+  <section id="posts" class="page section" aria-hidden="true">
     <div class="card">
       <h3>POSTS</h3>
       <p class="muted">Sample post content here.</p>
@@ -142,6 +143,21 @@ document.querySelectorAll('.nav button.nav-btn').forEach(btn=>{
   btn.addEventListener('click', ()=> show(btn.dataset.target));
 });
 show('home');
+
+/* -------------------------
+   Scroll Animation for Sections
+   ------------------------- */
+const sections = document.querySelectorAll('.section');
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if(entry.isIntersecting){
+            entry.target.classList.add('visible');
+        }
+    });
+}, { threshold: 0.1 });
+sections.forEach(section => {
+    observer.observe(section);
+});
 </script>
 
 </body>
