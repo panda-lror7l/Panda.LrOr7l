@@ -3,7 +3,7 @@ body {
     font-family: 'Noto Sans KR', sans-serif;
     margin: 0;
     padding: 0;
-    background: linear-gradient(135deg, #B3E5FC, #F8BBD0);
+    background: linear-gradient(135deg,#B3E5FC,#F8BBD0);
     color: #333;
 }
 
@@ -15,7 +15,7 @@ body {
 
 /* 헤더 */
 header {
-    background-color: rgba(255,255,255,0.9);
+    background-color: rgba(255,255,255,0.95);
     position: sticky;
     top: 0;
     z-index: 1000;
@@ -150,12 +150,7 @@ form button:hover {
     background-color: #EC407A;
     width: 0;
     border-radius: 10px;
-    animation: fillSkill 1.5s ease forwards;
-}
-
-@keyframes fillSkill {
-    from { width: 0; }
-    to { width: 100%; }
+    transition: width 1.5s ease;
 }
 
 /* SNS */
@@ -173,22 +168,10 @@ form button:hover {
 }
 
 /* 반응형 모바일 */
-@media (max-width: 768px) {
-    .profile-img {
-        width: 120px;
-        height: 120px;
-    }
-    .profile-card h2, .skill-card h2, .sns-card h2, .career-card h2 {
-        font-size: 22px;
-    }
-    nav ul {
-        gap: 10px;
-    }
-    .sns-card a {
-        font-size: 16px;
-        margin: 5px;
-    }
-    form input, form textarea {
-        width: 90%;
-    }
+@media(max-width:768px){
+    .profile-img{width:120px;height:120px;}
+    .profile-card h2,.skill-card h2,.sns-card h2,.career-card h2{font-size:22px;}
+    nav ul{gap:10px;}
+    .sns-card a{font-size:16px;margin:5px;}
+    form input,form textarea{width:90%;}
 }
