@@ -1,136 +1,146 @@
 /* 전체 스타일 */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Noto Sans KR', sans-serif;
     margin: 0;
     padding: 0;
     background: linear-gradient(135deg, #B3E5FC, #F8BBD0);
     color: #333;
 }
 
-/* 컨테이너 */
 .container {
-    max-width: 1000px;
+    max-width: 900px;
     margin: 0 auto;
     padding: 20px;
 }
 
 /* 헤더 */
 header {
-    background-color: rgba(255,255,255,0.9);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-}
-
-header .logo {
     text-align: center;
-    margin: 10px 0;
-    font-size: 24px;
+    padding: 30px 0;
 }
 
-/* 네비게이션 */
-nav ul {
-    list-style: none;
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    padding: 0;
-    margin: 10px 0;
-    flex-wrap: wrap;
-}
-
-nav a {
-    text-decoration: none;
-    color: #333;
+.logo {
+    font-size: 32px;
     font-weight: bold;
+}
+
+/* 프로필 카드 */
+.profile-card {
+    background-color: rgba(255,255,255,0.9);
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.profile-img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 15px;
+}
+
+.profile-card h2 {
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.profile-card p {
+    margin: 5px 0;
     font-size: 16px;
 }
 
-nav a:hover {
+.profile-card a {
     color: #EC407A;
+    text-decoration: none;
 }
 
-/* 섹션 공통 */
-section {
-    padding: 60px 20px;
+.profile-card a:hover {
+    text-decoration: underline;
+}
+
+/* 스킬 카드 */
+.skill-card {
+    background-color: rgba(255,255,255,0.9);
+    padding: 30px;
+    border-radius: 15px;
+    margin-bottom: 40px;
+}
+
+.skill-card h2 {
     text-align: center;
-}
-
-/* 프로필 이미지 */
-.profile-img {
-    width: 180px;
-    height: 180px;
-    border-radius: 50%;
-    object-fit: cover;
     margin-bottom: 20px;
 }
 
-/* 경력 */
-#career ul {
-    list-style: none;
-    padding: 0;
+.skill {
+    margin: 15px 0;
 }
 
-#career li {
-    margin: 12px 0;
-    font-size: 18px;
-}
-
-/* 폼 스타일 */
-form input, form textarea {
-    display: block;
-    margin: 10px auto;
-    padding: 10px;
-    width: 80%;
-    max-width: 400px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-form button {
-    padding: 10px 20px;
-    background-color: #F48FB1;
-    border: none;
-    color: white;
+.skill span {
     font-weight: bold;
-    cursor: pointer;
-    border-radius: 5px;
 }
 
-form button:hover {
+.skill-bar {
+    width: 100%;
+    background-color: #eee;
+    border-radius: 10px;
+    overflow: hidden;
+    height: 20px;
+    margin-top: 5px;
+}
+
+.skill-fill {
+    height: 100%;
     background-color: #EC407A;
+    width: 0;
+    border-radius: 10px;
 }
 
-/* SNS 링크 */
-.sns-links a {
-    display: inline-block;
-    margin: 10px 15px;
-    color: #00796B;
+/* SNS 카드 */
+.sns-card {
+    background-color: rgba(255,255,255,0.9);
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+}
+
+.sns-card a {
+    margin: 0 15px;
     text-decoration: none;
     font-weight: bold;
+    color: #00796B;
     font-size: 18px;
 }
 
-.sns-links a:hover {
+.sns-card a:hover {
     color: #004D40;
 }
 
-/* 모바일 대응 */
+/* 반응형 모바일 */
 @media (max-width: 768px) {
-    nav ul {
-        gap: 15px;
-    }
     .profile-img {
-        width: 140px;
-        height: 140px;
+        width: 120px;
+        height: 120px;
     }
-    header .logo {
-        font-size: 20px;
+    .profile-card h2 {
+        font-size: 24px;
     }
-    #career li, .sns-links a {
+    .skill-card h2, .sns-card h2 {
+        font-size: 22px;
+    }
+    .sns-card a {
         font-size: 16px;
+        margin: 10px;
     }
-    form input, form textarea {
-        width: 90%;
-    }
+}
+
+/* 스킬 바 애니메이션 */
+.skill-fill {
+    animation: fillSkill 1.5s ease forwards;
+}
+
+@keyframes fillSkill {
+    from { width: 0; }
+    to { width: 90%; }
 }
