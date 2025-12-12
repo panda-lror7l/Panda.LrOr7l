@@ -15,17 +15,43 @@ body {
 
 /* 헤더 */
 header {
-    text-align: center;
-    padding: 30px 0;
+    background-color: rgba(255,255,255,0.9);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    padding: 10px 0;
 }
 
-.logo {
+header .logo {
+    text-align: center;
     font-size: 32px;
     font-weight: bold;
+    margin-bottom: 10px;
 }
 
-/* 프로필 카드 */
-.profile-card {
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    padding: 0;
+    margin: 0;
+}
+
+nav a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+nav a:hover {
+    color: #EC407A;
+}
+
+/* 카드 공통 */
+.profile-card, .career-card, .contact-card, .skill-card, .sns-card {
     background-color: rgba(255,255,255,0.9);
     padding: 30px;
     border-radius: 15px;
@@ -33,6 +59,7 @@ header {
     margin-bottom: 40px;
 }
 
+/* 프로필 */
 .profile-img {
     width: 150px;
     height: 150px;
@@ -60,16 +87,44 @@ header {
     text-decoration: underline;
 }
 
-/* 스킬 카드 */
-.skill-card {
-    background-color: rgba(255,255,255,0.9);
-    padding: 30px;
-    border-radius: 15px;
-    margin-bottom: 40px;
+/* 경력 */
+.career-card ul {
+    list-style: none;
+    padding: 0;
 }
 
+.career-card li {
+    margin: 12px 0;
+    font-size: 16px;
+}
+
+/* 1:1 문의 */
+form input, form textarea {
+    display: block;
+    margin: 10px auto;
+    padding: 10px;
+    width: 80%;
+    max-width: 400px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+form button {
+    padding: 10px 20px;
+    background-color: #F48FB1;
+    border: none;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+form button:hover {
+    background-color: #EC407A;
+}
+
+/* 스킬 */
 .skill-card h2 {
-    text-align: center;
     margin-bottom: 20px;
 }
 
@@ -95,18 +150,18 @@ header {
     background-color: #EC407A;
     width: 0;
     border-radius: 10px;
+    animation: fillSkill 1.5s ease forwards;
 }
 
-/* SNS 카드 */
-.sns-card {
-    background-color: rgba(255,255,255,0.9);
-    padding: 30px;
-    border-radius: 15px;
-    text-align: center;
+@keyframes fillSkill {
+    from { width: 0; }
+    to { width: 100%; }
 }
 
+/* SNS */
 .sns-card a {
-    margin: 0 15px;
+    display: inline-block;
+    margin: 10px 15px;
     text-decoration: none;
     font-weight: bold;
     color: #00796B;
@@ -123,24 +178,17 @@ header {
         width: 120px;
         height: 120px;
     }
-    .profile-card h2 {
-        font-size: 24px;
-    }
-    .skill-card h2, .sns-card h2 {
+    .profile-card h2, .skill-card h2, .sns-card h2, .career-card h2 {
         font-size: 22px;
+    }
+    nav ul {
+        gap: 10px;
     }
     .sns-card a {
         font-size: 16px;
-        margin: 10px;
+        margin: 5px;
     }
-}
-
-/* 스킬 바 애니메이션 */
-.skill-fill {
-    animation: fillSkill 1.5s ease forwards;
-}
-
-@keyframes fillSkill {
-    from { width: 0; }
-    to { width: 90%; }
+    form input, form textarea {
+        width: 90%;
+    }
 }
