@@ -1,273 +1,577 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Panda World</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>PANDA WORLD — Professional Profile</title>
 
-<!-- 기본 스타일 -->
+<!-- Meta for nicer mobile -->
+<meta name="theme-color" content="#6a4cff">
+
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+/* -------------------------
+   Variables & Dark Mode
+   ------------------------- */
+:root{
+  --bg: linear-gradient(180deg,#f7fbff,#f0f7ff);
+  --card:#ffffff;
+  --text:#0b1220;
+  --muted:#6b7280;
+  --accent:#6a4cff;
+  --accent2:#ff91bf;
+  --glass: rgba(255,255,255,0.7);
+  --shadow: 0 14px 40px rgba(10,12,30,0.08);
+  --glass-border: rgba(255,255,255,0.6);
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg: linear-gradient(180deg,#051022,#07142a);
+    --card: rgba(10,12,16,0.6);
+    --text:#e6eef8;
+    --muted:#9fb0c9;
+    --accent:#8a6bff;
+    --accent2:#ff93c6;
+    --glass: rgba(6,8,10,0.45);
+    --shadow: 0 20px 50px rgba(0,0,0,0.7);
+    --glass-border: rgba(255,255,255,0.04);
+  }
+}
 
-    body {
-        margin: 0;
-        font-family: 'Poppins', sans-serif;
-        background: var(--bg);
-        color: var(--text);
-        transition: 0.4s;
-        overflow-x: hidden;
-    }
+/* -------------------------
+   Base
+   ------------------------- */
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans KR",system-ui,Arial;}
+body{
+  background:var(--bg);
+  color:var(--text);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  overflow-x:hidden;
+}
 
-    /* 다크모드 자동 */
-    @media (prefers-color-scheme: dark) {
-        :root {
-            --bg: #0d0d0d;
-            --box: #1c1c1c;
-            --text: #ffffff;
-            --accent: #6cf7ff;
-        }
-    }
+/* -------------------------
+   Container & Layout
+   ------------------------- */
+.container{
+  max-width:1100px;
+  margin:28px auto;
+  padding:24px;
+}
 
-    @media (prefers-color-scheme: light) {
-        :root {
-            --bg: #f6f6f6;
-            --box: #ffffff;
-            --text: #222222;
-            --accent: #00aaff;
-        }
-    }
+/* -------------------------
+   Header / Nav
+   ------------------------- */
+.header{
+  position:fixed;left:50%;transform:translateX(-50%);top:16px;z-index:120;
+  width:calc(100% - 48px);max-width:1100px;
+  display:flex;align-items:center;gap:18px;padding:12px 18px;border-radius:14px;
+  background:var(--glass);backdrop-filter: blur(8px);box-shadow:var(--shadow);
+  border:1px solid var(--glass-border);
+}
+.brand{font-weight:900;color:var(--accent);letter-spacing:0.6px;}
+.nav{margin-left:auto;display:flex;gap:10px;align-items:center;}
+.nav button{background:transparent;border:none;padding:8px 12px;border-radius:10px;font-weight:700;color:var(--muted);cursor:pointer}
+.nav button.active{background:linear-gradient(90deg,var(--accent), #8fa2ff);color:#fff;box-shadow:0 8px rgba(0,0,0,0.08)}
 
-    /* 네비게이션 */
-    nav {
-        position: fixed;
-        top: 0;
-        width: 100%;
-        background: var(--box);
-        padding: 15px;
-        display: flex;
-        justify-content: center;
-        gap: 40px;
-        z-index: 999;
-        box-shadow: 0 3px 10px rgba(0,0,0,0.15);
-    }
+.logo-badge{
+  display:flex;align-items:center;gap:10px;
+}
+.logo-mark{
+  width:44px;height:44px;border-radius:10px;display:inline-block;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  box-shadow:0 8px 20px rgba(106,76,255,0.12);
+  transform:rotate(-8deg);
+}
 
-    nav a {
-        font-size: 18px;
-        text-decoration: none;
-        font-weight: 600;
-        color: var(--text);
-        cursor: pointer;
-        transition: 0.3s;
-    }
+/* -------------------------
+   Hero (HOME)
+   ------------------------- */
+.hero{
+  margin-top:84px;
+  display:flex;gap:28px;align-items:center;
+  background:var(--card);padding:26px;border-radius:16px;box-shadow:var(--shadow);
+  overflow:hidden;position:relative;
+}
+.hero-left{flex:0 0 220px;text-align:center;}
+.avatar{
+  width:180px;height:180px;border-radius:18px;object-fit:cover;border:6px solid rgba(255,255,255,0.9);
+  box-shadow:0 18px 40px rgba(106,76,255,0.12);
+}
+.avatar-float{animation: floaty 3.2s ease-in-out infinite;}
+@keyframes floaty{0%{transform:translateY(0)}50%{transform:translateY(-12px)}100%{transform:translateY(0)}}
 
-    nav a:hover {
-        color: var(--accent);
-    }
+.hero-right{flex:1}
+.h-title{font-size:34px;margin:0 0 8px;font-weight:900;letter-spacing:-0.6px}
+.h-sub{color:var(--muted);margin:0 0 16px;font-size:15px}
+.cta-row{display:flex;gap:12px;flex-wrap:wrap}
+.btn{
+  display:inline-flex;align-items:center;gap:10px;padding:11px 16px;border-radius:12px;font-weight:800;
+  border:none;cursor:pointer;text-decoration:none;
+  background:linear-gradient(90deg,var(--accent), #8fa2ff);color:#fff;box-shadow:0 10px rgba(0,0,0,0.08)
+}
+.btn.ghost{background:transparent;color:var(--accent);border:1.5px solid rgba(106,76,255,0.12);box-shadow:none}
 
-    /* 페이지 섹션 */
-    section {
-        display: none;
-        padding: 120px 20px;
-        max-width: 900px;
-        margin: auto;
-        animation: fade 0.5s ease-in-out;
-    }
+/* -------------------------
+   Sections & Cards
+   ------------------------- */
+.section{
+  margin-top:22px;display:grid;grid-template-columns:1fr 360px;gap:20px;
+}
+.card{
+  background:var(--card);padding:18px;border-radius:14px;box-shadow:var(--shadow);
+}
+.card h3{margin:0 0 12px;color:var(--accent);font-size:16px}
 
-    .active {
-        display: block;
-    }
+/* timeline styles */
+.timeline{position:relative;padding-left:20px}
+.timeline::before{content:"";position:absolute;left:12px;top:0;bottom:0;width:3px;background:linear-gradient(#fff0,#ffd6ff,#fff0);opacity:0.25;border-radius:4px}
+.timeline-item{position:relative;padding:12px 12px 12px 28px;border-radius:10px;margin-bottom:12px;background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);display:flex;gap:12px;align-items:flex-start}
+.timeline-item .dot{width:14px;height:14px;border-radius:50%;background:var(--accent);flex-shrink:0;margin-right:6px;margin-left:-18px}
+.timeline-item h4{margin:0;font-size:15px}
+.timeline-item p{margin:6px 0 0;color:var(--muted);font-size:14px}
 
-    @keyframes fade {
-        from { opacity: 0; transform: translateY(10px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
+/* POSTS */
+.post-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.post{padding:12px;border-radius:10px;background:linear-gradient(180deg,#fff,#fbfbff);box-shadow:0 6px rgba(10,10,30,0.02)}
 
-    /* 프로필 */
-    .profile-box {
-        text-align: center;
-        background: var(--box);
-        padding: 30px;
-        border-radius: 20px;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.15);
-    }
+/* CONTACT form */
+.form-row{display:flex;flex-direction:column;gap:8px}
+.input,textarea{padding:12px;border-radius:10px;border:1px solid rgba(0,0,0,0.06);background:transparent;color:var(--text)}
+textarea{min-height:110px;resize:vertical}
 
-    .profile-box img {
-        width: 160px;
-        height: 160px;
-        border-radius: 50%;
-        object-fit: cover;
-        border: 4px solid var(--accent);
-        margin-bottom: 20px;
-    }
+/* popup modal */
+.modal-bg{position:fixed;inset:0;background:rgba(2,6,23,0.55);display:none;align-items:center;justify-content:center;z-index:220}
+.modal{width:92%;max-width:540px;background:var(--card);padding:18px;border-radius:12px;box-shadow:0 30px 80px rgba(3,6,25,0.45)}
 
-    .profile-box h1 {
-        margin: 0;
-        font-size: 32px;
-    }
+/* audio controller */
+.audio-control{position:fixed;right:18px;bottom:18px;background:linear-gradient(90deg,var(--accent),#8fa2ff);padding:10px 12px;border-radius:999px;color:#fff;display:flex;gap:8px;align-items:center;z-index:200;box-shadow:0 14px 40px rgba(0,0,0,0.2)}
+.audio-control button{background:transparent;border:0;color:inherit;font-weight:800;cursor:pointer}
 
-    /* 경력 */
-    .career-box {
-        background: var(--box);
-        padding: 25px;
-        border-radius: 15px;
-        line-height: 1.9;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.15);
-        font-size: 18px;
-    }
-
-    /* CONTACT */
-    .contact-box {
-        background: var(--box);
-        padding: 25px;
-        border-radius: 15px;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.15);
-    }
-
-    input, textarea {
-        width: 100%;
-        padding: 12px;
-        margin-top: 10px;
-        border: 2px solid var(--accent);
-        border-radius: 10px;
-        background: var(--bg);
-        color: var(--text);
-        resize: none;
-    }
-
-    button {
-        margin-top: 15px;
-        width: 100%;
-        padding: 14px;
-        border: none;
-        border-radius: 10px;
-        background: var(--accent);
-        color: #000;
-        font-size: 18px;
-        font-weight: 700;
-        cursor: pointer;
-        transition: 0.3s;
-    }
-
-    button:hover {
-        opacity: 0.8;
-    }
-
-    /* 배경 애니메이션 */
-    .bg {
-        position: fixed;
-        width: 100%;
-        height: 100%;
-        background: url("https://i.imgur.com/4NJlZBr.gif");
-        background-size: cover;
-        opacity: 0.25;
-        z-index: -1;
-    }
+/* responsive */
+@media (max-width:920px){
+  .section{grid-template-columns:1fr}
+  .hero{flex-direction:column;align-items:center}
+  .hero-left{flex:0 0 auto}
+  .avatar{width:140px;height:140px}
+  .post-grid{grid-template-columns:1fr}
+  .nav{gap:6px}
+}
 </style>
 </head>
-
 <body>
 
-<div class="bg"></div>
+<!-- Container -->
+<div class="container">
 
-<!-- NAV -->
-<nav>
-    <a onclick="showPage('home')">HOME</a>
-    <a onclick="showPage('career')">CAREER</a>
-    <a onclick="showPage('contact')">CONTACT</a>
-    <a onclick="showPage('posts')">POSTS</a>
-</nav>
-
-<!-- HOME -->
-<section id="home" class="active">
-    <div class="profile-box">
-        <img src="https://cdn.discordapp.com/attachments/1394979391938887692/1449072282369786007/IMG_4878.jpg" />
-        <h1>Panda</h1>
-        <p>Welcome to Panda World 🐼✨</p>
+  <!-- Header -->
+  <div class="header" role="banner" aria-label="Panda header">
+    <div class="logo-badge">
+      <div class="logo-mark" aria-hidden="true"></div>
+      <div class="brand">PANDA WORLD</div>
     </div>
-</section>
 
-<!-- CAREER -->
-<section id="career">
-    <h2>경력</h2>
-    <div class="career-box">
-        동화성의료원 6급 을 관리팀장<br>
-        행정복지센터 (행정실) 6급 갑 선임행정관<br>
-        연화스시 부대표<br>
-        동탄카 사원<br>
-        .<br>.
-        더 프라이빗 부대표<br>
-        화성동부소방서 행정과장
+    <nav class="nav" role="navigation" aria-label="Main navigation">
+      <button class="nav-btn active" data-target="home">HOME</button>
+      <button class="nav-btn" data-target="career">CAREER</button>
+      <button class="nav-btn" data-target="contact">CONTACT</button>
+      <button class="nav-btn" data-target="posts">POSTS</button>
+    </nav>
+  </div>
+
+  <!-- HERO / HOME -->
+  <main id="home" class="page" role="main" aria-labelledby="home">
+    <section class="hero" aria-label="Profile hero">
+      <div class="hero-left">
+        <img class="avatar avatar-float" id="avatarImg"
+             src="https://cdn.discordapp.com/attachments/1394979391938887692/1449072282369786007/IMG_4878.jpg?ex=693d913a&is=693c3fba&hm=9d88051a0419d5dd153cadd82ceca735089ca97a1b8075c4850e4b366c871b41&"
+             alt="Panda profile">
+      </div>
+      <div class="hero-right">
+        <h1 class="h-title">Panda</h1>
+        <div class="h-sub">Cute game-styled personal profile • Welcome to Panda World</div>
+
+        <div class="cta-row">
+          <a class="btn" href="https://www.youtube.com/@panda_LrOr7l" target="_blank" rel="noopener">📹 YouTube</a>
+          <a class="btn ghost" href="https://discord.gg/C76Mj5NQGj" target="_blank" rel="noopener">🚒 Fire Dept Helpdesk</a>
+          <button class="btn ghost" id="openDmBtn">💌 1:1 Message</button>
+        </div>
+
+        <div style="margin-top:16px;color:var(--muted)">Touch the menu above to view Career, Contact or Posts. Site optimized for desktop & mobile.</div>
+      </div>
+    </section>
+
+    <div class="section" style="margin-top:18px;">
+      <div class="card">
+        <h3>About</h3>
+        <p class="muted">Panda is focused on game UI, community management and admin operations. This page showcases profile, career and contact methods.</p>
+      </div>
+
+      <aside class="card" aria-label="Quick info">
+        <h3>Quick Info</h3>
+        <p class="muted"><strong>Panda</strong><br>Role: Panda World Admin</p>
+        <div style="margin-top:12px;display:flex;flex-direction:column;gap:8px">
+          <a class="btn small" href="https://discord.gg/C76Mj5NQGj" target="_blank">🚒 Helpdesk (Discord)</a>
+          <a class="btn small ghost" id="openDmBtn2">💌 1:1 Message</a>
+        </div>
+      </aside>
     </div>
-</section>
+  </main>
 
-<!-- CONTACT -->
-<section id="contact">
-    <h2>1:1 메세지</h2>
-    <div class="contact-box">
-        <input id="name" placeholder="Your Name">
-        <textarea id="msg" rows="5" placeholder="Your Message"></textarea>
-        <button onclick="sendMsg()">Send</button>
+  <!-- CAREER PAGE -->
+  <section id="career" class="page" aria-hidden="true">
+    <div class="card">
+      <h3>CAREER</h3>
+      <div class="timeline" style="margin-top:12px;">
+        <div class="timeline-item">
+          <div class="dot" aria-hidden="true"></div>
+          <div>
+            <h4>동화성의료원</h4>
+            <p>6급 을 관리팀장</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="dot"></div>
+          <div>
+            <h4>행정복지센터 (행정실)</h4>
+            <p>6급 갑 선임행정관</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="dot"></div>
+          <div>
+            <h4>연화스시</h4>
+            <p>부대표</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="dot"></div>
+          <div>
+            <h4>동탄카</h4>
+            <p>사원</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="dot"></div>
+          <div>
+            <h4>더 프라이빗</h4>
+            <p>부대표</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="dot"></div>
+          <div>
+            <h4>화성동부소방서</h4>
+            <p>행정과장</p>
+          </div>
+        </div>
+      </div>
     </div>
-</section>
+  </section>
 
-<!-- POSTS -->
-<section id="posts">
-    <h2>Posts</h2>
-    <p>Coming soon...</p>
-</section>
+  <!-- CONTACT PAGE -->
+  <section id="contact" class="page" aria-hidden="true">
+    <div class="card">
+      <h3>CONTACT</h3>
+      <p class="muted">Official inquiries: use the Fire Dept Helpdesk (Discord) or send a 1:1 message below.</p>
 
-<!-- 페이지 전환 -->
+      <div style="margin-top:12px" class="form-row">
+        <label class="muted">Name</label>
+        <input id="contact-name" class="input" placeholder="Your name or nickname">
+        <label class="muted">Message</label>
+        <textarea id="contact-msg" placeholder="Write your message here..."></textarea>
+        <div style="display:flex;gap:10px;margin-top:12px">
+          <button id="sendContact" class="btn">Send via Discord</button>
+          <a class="btn ghost" href="https://discord.gg/C76Mj5NQGj" target="_blank" rel="noopener">Open Helpdesk</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- POSTS PAGE -->
+  <section id="posts" class="page" aria-hidden="true">
+    <div class="card">
+      <h3>POSTS</h3>
+      <div class="post-grid" style="margin-top:12px">
+        <div class="post"><strong>Site relaunch</strong><div class="muted" style="margin-top:6px;font-size:13px">2025-12-13</div></div>
+        <div class="post"><strong>Panda World Launch</strong><div class="muted" style="margin-top:6px;font-size:13px">2025-11-21</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer style="margin-top:26px;text-align:center;color:var(--muted);font-size:13px">
+    © 2025 Panda — Panda World
+  </footer>
+
+</div> <!-- container -->
+
+<!-- DM Modal -->
+<div class="modal-bg" id="dmModal" aria-hidden="true">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="dmTitle">
+    <div style="font-weight:800;font-size:18px" id="dmTitle">💌 Send 1:1 Message</div>
+    <p class="muted" style="margin-top:8px">Messages will be delivered to Panda's Discord via webhook.</p>
+
+    <div style="margin-top:10px">
+      <label class="muted">Name</label>
+      <input id="dm-name" class="input" placeholder="Your name or nickname">
+      <label class="muted" style="margin-top:8px">Message</label>
+      <textarea id="dm-message" placeholder="Write your message here..."></textarea>
+
+      <div style="display:flex;gap:8px;margin-top:12px">
+        <button id="dmSend" class="btn">Send</button>
+        <button id="dmClose" class="btn ghost">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Audio control -->
+<div class="audio-control" id="audioControl" style="display:none" role="region" aria-label="Background music">
+  <button id="audioPlay">▶</button>
+  <button id="audioNext">⏭</button>
+  <div id="audioLabel" style="min-width:120px;font-size:13px;opacity:0.95">Loading...</div>
+</div>
+
 <script>
-function showPage(page) {
-    document.querySelectorAll("section").forEach(sec => sec.classList.remove("active"));
-    document.getElementById(page).classList.add("active");
-}
-</script>
-
-<!-- Webhook 메시지 -->
-<script>
-function sendMsg() {
-    const name = document.getElementById("name").value;
-    const msg = document.getElementById("msg").value;
-
-    if (!msg.trim()) return;
-
-    fetch("https://discord.com/api/webhooks/1449075418513539264/r_JqXqlW1_U9qO1dYeh1uLVWVWC4OImBBugs86yf1HehB9ZkrjFlN3tuGG59ggNnSvlU", {
-        method: "POST",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify({
-            content: `📩 **새 메시지 도착**\n👤 보낸 사람: ${name}\n💬 내용: ${msg}`
-        })
-    });
-
-    alert("메시지가 전송되었습니다!");
-}
-</script>
-
-<!-- BGM -->
-<script>
-const songs = [
-    "music/panda_song.mp3.mp3",
-    "music/팬더송.mp3.mp3",
-    "music/정리-태리.mp3.mp3"
+/* -------------------------
+   Config (edit if needed)
+   ------------------------- */
+const WEBHOOK = "https://discord.com/api/webhooks/1449075418513539264/r_JqXqlW1_U9qO1dYeh1uLVWVWC4OImBBugs86yf1HehB9ZkrjFlN3tuGG59ggNnSvlU";
+const MUSIC = [
+  '/music/panda_song.mp3.mp3',
+  '/music/팬더송.mp3.mp3',
+  '/music/정리-태리.mp3.mp3'
 ];
+const FADE_MS = 1500;
+const TARGET_VOLUME = 0.55;
 
-let audio = new Audio();
-audio.volume = 0;
-audio.loop = true;
-
-function fadeIn() {
-    let fade = setInterval(() => {
-        if (audio.volume < 1) audio.volume += 0.02;
-        else clearInterval(fade);
-    }, 80);
+/* -------------------------
+   Simple page system
+   ------------------------- */
+const pages = ['home','career','contact','posts'];
+function show(page){
+  pages.forEach(p=>{
+    const el = document.getElementById(p);
+    if(!el) return;
+    if(p===page){
+      el.style.display = (p==='home') ? 'block' : 'block';
+      el.removeAttribute('aria-hidden');
+      // focus for accessibility
+      el.scrollTop = 0;
+    } else {
+      el.style.display = 'none';
+      el.setAttribute('aria-hidden','true');
+    }
+  });
+  // nav active
+  document.querySelectorAll('.nav button, .nav button').forEach(btn=>{
+    btn.classList.toggle('active', btn.dataset.target===page);
+  });
+  // fallback highlight top nav buttons
+  document.querySelectorAll('.nav button').forEach(b=>{
+    b.classList.toggle('active', b.dataset.target===page);
+  });
+  // scroll to top
+  window.scrollTo({top:0,behavior:'smooth'});
 }
 
-window.onload = () => {
-    const randomSong = songs[Math.floor(Math.random() * songs.length)];
-    audio.src = randomSong;
-    audio.play().then(() => fadeIn());
-};
+/* init nav buttons */
+document.querySelectorAll('.nav button.nav-btn').forEach(btn=>{
+  btn.addEventListener('click', ()=> {
+    const t = btn.dataset.target;
+    if(t) show(t);
+  });
+});
+document.querySelectorAll('.nav button').forEach(b=>{
+  b.addEventListener('click', ()=> {
+    const t = b.dataset.target || b.getAttribute('data-target') || b.textContent.trim().toLowerCase();
+    const map = {'home':'home','career':'career','contact':'contact','posts':'posts'};
+    show(map[t] || 'home');
+    // set active
+    document.querySelectorAll('.nav button').forEach(x=>x.classList.remove('active'));
+    b.classList.add('active');
+  });
+});
+
+/* default */
+show('home');
+
+/* -------------------------
+   Modal (DM)
+   ------------------------- */
+const dmModal = document.getElementById('dmModal');
+document.getElementById('openDmBtn')?.addEventListener('click', ()=> dmOpen());
+document.getElementById('openDmBtn2')?.addEventListener('click', ()=> dmOpen());
+document.getElementById('openDmBtn')?.addEventListener('keydown', (e)=>{ if(e.key==='Enter') dmOpen(); });
+function dmOpen(){
+  dmModal.style.display = 'flex';
+  dmModal.removeAttribute('aria-hidden');
+  document.getElementById('dm-name').focus();
+}
+document.getElementById('dmClose')?.addEventListener('click', ()=> { dmModal.style.display='none'; dmModal.setAttribute('aria-hidden','true'); });
+document.getElementById('dmSend')?.addEventListener('click', sendDM);
+
+/* send from modal */
+async function sendDM(){
+  const name = document.getElementById('dm-name').value.trim();
+  const message = document.getElementById('dm-message').value.trim();
+  if(!message){ alert('Please write a message.'); return; }
+  const payload = { content: `📩 New 1:1 Message\nSender: ${name || 'Anonymous'}\n\n${message}` };
+  try{
+    const res = await fetch(WEBHOOK, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(payload) });
+    if(!res.ok) throw new Error('Webhook error');
+    alert('Message sent. Thank you!');
+    document.getElementById('dm-name').value=''; document.getElementById('dm-message').value='';
+    dmModal.style.display='none'; dmModal.setAttribute('aria-hidden','true');
+  }catch(e){
+    console.error(e);
+    alert('Failed to send message. Try again later.');
+  }
+}
+
+/* contact form send */
+document.getElementById('sendContact')?.addEventListener('click', async ()=>{
+  const name = document.getElementById('contact-name').value.trim();
+  const msg = document.getElementById('contact-msg').value.trim();
+  if(!msg){ alert('Please enter a message.'); return; }
+  const payload = { content: `📩 New Contact Message\nSender: ${name || 'Anonymous'}\n\n${msg}` };
+  try{
+    const res = await fetch(WEBHOOK, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(payload) });
+    if(!res.ok) throw new Error('Webhook error');
+    alert('Message sent via Discord.');
+    document.getElementById('contact-name').value=''; document.getElementById('contact-msg').value='';
+  }catch(e){
+    console.error(e);
+    alert('Failed to send message.');
+  }
+});
+
+/* -------------------------
+   Timeline item click (optional details)
+   ------------------------- */
+document.querySelectorAll('.timeline-item').forEach((item, idx)=>{
+  item.addEventListener('click', ()=>{
+    // show detail modal (simple alert for now — can be replaced by a fancy modal)
+    const title = item.querySelector('h4')?.textContent || 'Detail';
+    const text = item.querySelector('p')?.textContent || '';
+    alert(`${title}\n\n${text}`);
+  });
+});
+
+/* -------------------------
+   AUDIO: BGM player with fade/random
+   ------------------------- */
+let audio = new Audio();
+audio.preload = 'auto';
+let current = -1;
+let autoplayBlocked = false;
+const audioCtrl = document.getElementById('audioControl');
+const playBtn = document.getElementById('audioPlay');
+const nextBtn = document.getElementById('audioNext');
+const audioLabel = document.getElementById('audioLabel');
+
+function pickRandom(exclude=-1){
+  if(MUSIC.length===0) return -1;
+  if(MUSIC.length===1) return 0;
+  let i;
+  do { i = Math.floor(Math.random()*MUSIC.length); } while(i===exclude);
+  return i;
+}
+
+function setLabel(src){
+  const name = src.split('/').pop();
+  audioLabel.textContent = name;
+}
+
+async function startIndex(i){
+  if(i<0 || i>=MUSIC.length) i = pickRandom(-1);
+  current = i;
+  audio.src = MUSIC[current];
+  audio.volume = 0;
+  setLabel(audio.src);
+  try{
+    await audio.play();
+    // fade-in
+    const start = performance.now();
+    const ramp = setInterval(()=>{
+      const t = (performance.now()-start)/FADE_MS;
+      if(t>=1){ audio.volume = TARGET_VOLUME; clearInterval(ramp); }
+      else audio.volume = t*TARGET_VOLUME;
+    }, 60);
+    autoplayBlocked = false;
+    audioCtrl.style.display = 'flex';
+    playBtn.textContent = '⏸';
+  }catch(err){
+    // autoplay blocked
+    autoplayBlocked = true;
+    audioCtrl.style.display = 'flex';
+    playBtn.textContent = '▶';
+    audioLabel.textContent = 'Autoplay blocked — tap ▶';
+    console.warn('Autoplay blocked:',err);
+  }
+}
+
+audio.addEventListener('ended', ()=>{
+  const next = pickRandom(current);
+  startIndex(next);
+});
+
+playBtn?.addEventListener('click', ()=>{
+  if(audio.paused){
+    audio.play().then(()=> playBtn.textContent='⏸').catch(()=> alert('Playback blocked by browser. Tap anywhere then ▶ again.'));
+  }else{
+    audio.pause();
+    playBtn.textContent='▶';
+  }
+});
+nextBtn?.addEventListener('click', ()=> {
+  const ni = pickRandom(current);
+  startIndex(ni);
+});
+
+/* try autoplay once on load */
+window.addEventListener('load', ()=> {
+  setTimeout(()=> {
+    const idx = Math.floor(Math.random()*MUSIC.length);
+    startIndex(idx);
+  }, 350);
+});
+
+/* If click anywhere and autoplay was blocked, try to resume */
+document.addEventListener('click', function tryResume(){
+  if(autoplayBlocked){
+    audio.play().then(()=> {
+      autoplayBlocked = false;
+      playBtn.textContent = '⏸';
+      setLabel(audio.src);
+    }).catch(()=>{/*still blocked*/});
+    document.removeEventListener('click', tryResume);
+  }
+});
+
+/* -------------------------
+   A11y: keyboard nav for modal
+   ------------------------- */
+document.addEventListener('keydown', (e)=>{
+  if(e.key==='Escape'){
+    if(dmModal.style.display==='flex'){ dmModal.style.display='none'; dmModal.setAttribute('aria-hidden','true'); }
+  }
+});
+
+/* -------------------------
+   Small init: bind header nav dataset-target
+   ------------------------- */
+document.querySelectorAll('.nav button').forEach((btn,i)=>{
+  const targets = ['home','career','contact','posts'];
+  btn.dataset.target = targets[i] || 'home';
+});
+
 </script>
 
 </body>
