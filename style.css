@@ -1,59 +1,136 @@
-/* 전체 배경과 기본 폰트 */
+/* 전체 스타일 */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background: linear-gradient(to right, #cce7ff, #ffd6e8); /* 연한 하늘색 → 연한 핑크색 */
+    background: linear-gradient(135deg, #B3E5FC, #F8BBD0);
     color: #333;
+}
+
+/* 컨테이너 */
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
 }
 
 /* 헤더 */
 header {
-    background-color: rgba(255, 255, 255, 0.8);
-    padding: 20px;
-    text-align: center;
+    background-color: rgba(255,255,255,0.9);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
+header .logo {
+    text-align: center;
+    margin: 10px 0;
+    font-size: 24px;
+}
+
+/* 네비게이션 */
 nav ul {
     list-style: none;
-    padding: 0;
     display: flex;
     justify-content: center;
-    gap: 20px;
+    gap: 30px;
+    padding: 0;
+    margin: 10px 0;
+    flex-wrap: wrap;
 }
 
 nav a {
     text-decoration: none;
     color: #333;
+    font-weight: bold;
+    font-size: 16px;
 }
 
-/* 섹션 */
+nav a:hover {
+    color: #EC407A;
+}
+
+/* 섹션 공통 */
 section {
-    padding: 40px 20px;
+    padding: 60px 20px;
     text-align: center;
 }
 
-/* 커리어 카드 */
-.career-card {
-    display: inline-block;
-    padding: 20px;
-    margin: 10px;
-    border-radius: 10px;
+/* 프로필 이미지 */
+.profile-img {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 20px;
+}
+
+/* 경력 */
+#career ul {
+    list-style: none;
+    padding: 0;
+}
+
+#career li {
+    margin: 12px 0;
+    font-size: 18px;
+}
+
+/* 폼 스타일 */
+form input, form textarea {
+    display: block;
+    margin: 10px auto;
+    padding: 10px;
+    width: 80%;
+    max-width: 400px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+form button {
+    padding: 10px 20px;
+    background-color: #F48FB1;
+    border: none;
     color: white;
     font-weight: bold;
+    cursor: pointer;
+    border-radius: 5px;
 }
 
-.career-card.a {
-    background-color: #89CFF0; /* 연한 하늘색 */
+form button:hover {
+    background-color: #EC407A;
 }
 
-.career-card.b {
-    background-color: #FFB6C1; /* 연한 핑크색 */
+/* SNS 링크 */
+.sns-links a {
+    display: inline-block;
+    margin: 10px 15px;
+    color: #00796B;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 18px;
 }
 
-/* 푸터 */
-footer {
-    text-align: center;
-    padding: 20px;
-    background-color: rgba(255, 255, 255, 0.8);
+.sns-links a:hover {
+    color: #004D40;
+}
+
+/* 모바일 대응 */
+@media (max-width: 768px) {
+    nav ul {
+        gap: 15px;
+    }
+    .profile-img {
+        width: 140px;
+        height: 140px;
+    }
+    header .logo {
+        font-size: 20px;
+    }
+    #career li, .sns-links a {
+        font-size: 16px;
+    }
+    form input, form textarea {
+        width: 90%;
+    }
 }
