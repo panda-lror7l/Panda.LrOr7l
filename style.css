@@ -1,1 +1,59 @@
+/* 전체 배경과 기본 폰트 */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to right, #cce7ff, #ffd6e8); /* 연한 하늘색 → 연한 핑크색 */
+    color: #333;
+}
 
+/* 헤더 */
+header {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    text-align: center;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #333;
+}
+
+/* 섹션 */
+section {
+    padding: 40px 20px;
+    text-align: center;
+}
+
+/* 커리어 카드 */
+.career-card {
+    display: inline-block;
+    padding: 20px;
+    margin: 10px;
+    border-radius: 10px;
+    color: white;
+    font-weight: bold;
+}
+
+.career-card.a {
+    background-color: #89CFF0; /* 연한 하늘색 */
+}
+
+.career-card.b {
+    background-color: #FFB6C1; /* 연한 핑크색 */
+}
+
+/* 푸터 */
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8);
+}
