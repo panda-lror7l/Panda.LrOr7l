@@ -1,164 +1,148 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panda World</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>PANDA WORLD — Professional Profile</title>
+
+<style>
+:root{
+  --bg: linear-gradient(180deg,#f7fbff,#f0f7ff);
+  --card:#ffffff;
+  --text:#0b1220;
+  --muted:#6b7280;
+  --accent:#6a4cff;
+  --accent2:#ff91bf;
+  --glass: rgba(255,255,255,0.7);
+  --shadow: 0 14px 40px rgba(10,12,30,0.08);
+  --glass-border: rgba(255,255,255,0.6);
+}
+
+body{margin:0;font-family:Arial,sans-serif;background:var(--bg);color:var(--text);}
+.container{max-width:1100px;margin:28px auto;padding:24px;}
+.header{position:fixed;left:50%;transform:translateX(-50%);top:16px;z-index:120;width:calc(100% - 48px);max-width:1100px;display:flex;align-items:center;gap:18px;padding:12px 18px;border-radius:14px;background:var(--glass);backdrop-filter: blur(8px);box-shadow:var(--shadow);border:1px solid var(--glass-border);}
+.brand{font-weight:900;color:var(--accent);}
+.nav{margin-left:auto;display:flex;gap:10px;align-items:center;}
+.nav button{background:transparent;border:none;padding:8px 12px;border-radius:10px;font-weight:700;color:var(--muted);cursor:pointer}
+.nav button.active{background:linear-gradient(90deg,var(--accent), #8fa2ff);color:#fff;box-shadow:0 8px rgba(0,0,0,0.08);}
+.hero{margin-top:84px;display:flex;gap:28px;align-items:center;background:var(--card);padding:26px;border-radius:16px;box-shadow:var(--shadow);}
+.hero-left{flex:0 0 220px;text-align:center;}
+.avatar{width:180px;height:180px;border-radius:18px;object-fit:cover;border:6px solid rgba(255,255,255,0.9);box-shadow:0 18px 40px rgba(106,76,255,0.12);}
+.avatar-float{animation: floaty 3.2s ease-in-out infinite;}
+@keyframes floaty{0%{transform:translateY(0)}50%{transform:translateY(-12px)}100%{transform:translateY(0)}}
+.hero-right{flex:1}
+.h-title{font-size:34px;margin:0 0 8px;font-weight:900;letter-spacing:-0.6px}
+.h-sub{color:var(--muted);margin:0 0 16px;font-size:15px}
+.cta-row{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:11px 16px;border-radius:12px;font-weight:800;border:none;cursor:pointer;text-decoration:none;background:linear-gradient(90deg,var(--accent), #8fa2ff);color:#fff;box-shadow:0 10px rgba(0,0,0,0.08)}
+.btn.ghost{background:transparent;color:var(--accent);border:1.5px solid rgba(106,76,255,0.12);box-shadow:none}
+.section{margin-top:22px;display:grid;grid-template-columns:1fr 360px;gap:20px;}
+.card{background:var(--card);padding:18px;border-radius:14px;box-shadow:var(--shadow);}
+.card h3{margin:0 0 12px;color:var(--accent);font-size:16px}
+.timeline{position:relative;padding-left:20px}
+.timeline::before{content:"";position:absolute;left:12px;top:0;bottom:0;width:3px;background:linear-gradient(#fff0,#ffd6ff,#fff0);opacity:0.25;border-radius:4px}
+.timeline-item{position:relative;padding:12px 12px 12px 28px;border-radius:10px;margin-bottom:12px;background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);display:flex;gap:12px;align-items:flex-start}
+.timeline-item .dot{width:14px;height:14px;border-radius:50%;background:var(--accent);flex-shrink:0;margin-right:6px;margin-left:-18px}
+.timeline-item h4{margin:0;font-size:15px}
+.timeline-item p{margin:6px 0 0;color:var(--muted);font-size:14px}
+@media (max-width:920px){.section{grid-template-columns:1fr}.hero{flex-direction:column;align-items:center}.hero-left{flex:0 0 auto}.avatar{width:140px;height:140px}}
+</style>
 </head>
 <body>
 
-    <!-- HEADER / NAVIGATION -->
-    <header class="header">
-        <div class="logo">Panda World</div>
-        <nav class="nav">
-            <button class="nav-btn" data-page="home">홈</button>
-            <button class="nav-btn" data-page="profile">프로필</button>
-            <button class="nav-btn" data-page="career">경력</button>
-            <button class="nav-btn" data-page="gallery">갤러리</button>
-            <button class="nav-btn" data-page="contact">문의</button>
-        </nav>
+<div class="container">
+  <!-- Header -->
+  <div class="header">
+    <div class="brand">PANDA WORLD</div>
+    <nav class="nav">
+      <button class="nav-btn active" data-target="home">HOME</button>
+      <button class="nav-btn" data-target="career">CAREER</button>
+      <button class="nav-btn" data-target="contact">CONTACT</button>
+      <button class="nav-btn" data-target="posts">POSTS</button>
+    </nav>
+  </div>
 
-        <div class="header-right">
-            <button id="themeToggle" class="theme-btn">🌙</button>
+  <!-- HERO -->
+  <main id="home" class="page">
+    <section class="hero">
+      <div class="hero-left">
+        <img class="avatar avatar-float" src="https://cdn.discordapp.com/attachments/1394979391938887692/1449072282369786007/IMG_4878.jpg" alt="Panda profile">
+      </div>
+      <div class="hero-right">
+        <h1 class="h-title">Panda</h1>
+        <div class="h-sub">Cute game-styled personal profile • Welcome to Panda World</div>
+        <div class="cta-row">
+          <a class="btn" href="https://www.youtube.com/@panda_LrOr7l" target="_blank">📹 YouTube</a>
+          <a class="btn ghost" href="https://discord.gg/C76Mj5NQGj" target="_blank">🚒 Fire Dept Helpdesk</a>
         </div>
-    </header>
+      </div>
+    </section>
 
-
-    <!-- BACKGROUND ANIMATION -->
-    <div class="background-animation"></div>
-
-
-    <!-- BGM PLAYER -->
-    <div class="music-player">
-        <select id="musicSelect">
-            <option value="music/panda_song.mp3">Panda Song</option>
-            <option value="music/팬더송.mp3">팬더송</option>
-            <option value="music/정리-태리.mp3">정리 - 태리</option>
-            <option value="music/another.mp3">Another Track</option>
-        </select>
-        <button id="musicPlay">▶</button>
-        <button id="musicPause">⏸</button>
+    <div class="section">
+      <div class="card">
+        <h3>About</h3>
+        <p class="muted">Panda is focused on game UI, community management and admin operations. Profile, career and contact info included.</p>
+      </div>
+      <aside class="card">
+        <h3>Quick Info</h3>
+        <p class="muted"><strong>Panda</strong><br>Role: Panda World Admin</p>
+      </aside>
     </div>
+  </main>
 
+  <!-- CAREER -->
+  <section id="career" class="page" aria-hidden="true">
+    <div class="card">
+      <h3>CAREER</h3>
+      <div class="timeline" style="margin-top:12px;">
+        <div class="timeline-item"><div class="dot"></div><div><h4>동화성의료원</h4><p>6급 을 관리팀장</p></div></div>
+        <div class="timeline-item"><div class="dot"></div><div><h4>행정복지센터 (행정실)</h4><p>6급 갑 선임행정관</p></div></div>
+        <div class="timeline-item"><div class="dot"></div><div><h4>연화스시</h4><p>부대표</p></div></div>
+        <div class="timeline-item"><div class="dot"></div><div><h4>동탄카</h4><p>사원</p></div></div>
+        <div class="timeline-item"><div class="dot"></div><div><h4>더 프라이빗</h4><p>부대표</p></div></div>
+        <div class="timeline-item"><div class="dot"></div><div><h4>화성동부소방서</h4><p>행정과장</p></div></div>
+      </div>
+    </div>
+  </section>
 
-    <!-- PAGE CONTAINER -->
-    <main class="page-container">
+  <!-- CONTACT -->
+  <section id="contact" class="page" aria-hidden="true">
+    <div class="card">
+      <h3>CONTACT</h3>
+      <p class="muted">Email: <a href="mailto:edong651629@gmail.com">edong651629@gmail.com</a></p>
+    </div>
+  </section>
 
-        <!-- PAGE: HOME -->
-        <section id="home" class="page active">
-            <h1 class="title">PANDA WORLD</h1>
-            <p class="subtitle">Welcome to Panda's Universe</p>
-        </section>
+  <!-- POSTS -->
+  <section id="posts" class="page" aria-hidden="true">
+    <div class="card">
+      <h3>POSTS</h3>
+      <p class="muted">Sample post content here.</p>
+    </div>
+  </section>
 
+  <!-- FOOTER -->
+  <footer style="margin-top:26px;text-align:center;color:var(--muted);font-size:13px">
+    © 2025 Panda — Panda World
+  </footer>
+</div>
 
-        <!-- PAGE: PROFILE -->
-        <section id="profile" class="page">
-            <h2 class="section-title">프로필</h2>
+<script>
+const pages = ['home','career','contact','posts'];
+function show(page){
+  pages.forEach(p=>{
+    const el = document.getElementById(p);
+    if(!el) return;
+    if(p===page){ el.style.display='block'; el.removeAttribute('aria-hidden'); }
+    else{ el.style.display='none'; el.setAttribute('aria-hidden','true'); }
+  });
+  document.querySelectorAll('.nav button').forEach(btn=>btn.classList.toggle('active', btn.dataset.target===page));
+}
+document.querySelectorAll('.nav button.nav-btn').forEach(btn=>{
+  btn.addEventListener('click', ()=> show(btn.dataset.target));
+});
+show('home');
+</script>
 
-            <div class="profile-box">
-                <img src="https://cdn.discordapp.com/attachments/1394979391938887692/1449072282369786007/IMG_4878.jpg" class="profile-img">
-                <h3>판다</h3>
-
-                <div class="profile-links">
-                    <a href="https://www.youtube.com/@panda_LrOr7l" target="_blank" class="btn">유튜브 바로가기</a>
-                </div>
-
-                <p class="profile-text">
-                    안녕하세요! 판다의 개인 홈페이지입니다 🐼  
-                    귀여움 + 게임 테마의 특별한 공간으로 구성되어 있습니다!
-                </p>
-            </div>
-        </section>
-
-
-        <!-- PAGE: CAREER -->
-        <section id="career" class="page">
-            <h2 class="section-title">경력</h2>
-
-            <div class="timeline">
-
-                <div class="timeline-item">
-                    <div class="dot"></div>
-                    <div class="content">
-                        <h3>동화성의료원</h3>
-                        <p>6급 을 관리팀장</p>
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="dot"></div>
-                    <div class="content">
-                        <h3>행정복지센터 (행정실)</h3>
-                        <p>6급 갑 선임행정관</p>
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="dot"></div>
-                    <div class="content">
-                        <h3>연화스시</h3>
-                        <p>부대표</p>
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="dot"></div>
-                    <div class="content">
-                        <h3>동탄카</h3>
-                        <p>사원</p>
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="dot"></div>
-                    <div class="content">
-                        <h3>더 프라이빗</h3>
-                        <p>부대표</p>
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="dot"></div>
-                    <div class="content">
-                        <h3>화성동부소방서</h3>
-                        <p>행정과장</p>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-
-        <!-- PAGE: GALLERY -->
-        <section id="gallery" class="page">
-            <h2 class="section-title">갤러리</h2>
-
-            <div class="gallery-grid">
-                <!-- 사진은 나중에 추가해도 됨 -->
-                <div class="gallery-box">사진 1</div>
-                <div class="gallery-box">사진 2</div>
-                <div class="gallery-box">사진 3</div>
-            </div>
-        </section>
-
-
-        <!-- PAGE: CONTACT -->
-        <section id="contact" class="page">
-            <h2 class="section-title">문의</h2>
-
-            <form id="contactForm" class="contact-form">
-                <input type="text" id="nameInput" placeholder="이름" required>
-                <textarea id="msgInput" placeholder="메시지" required></textarea>
-
-                <button type="submit" class="btn">디스코드로 전송</button>
-            </form>
-
-            <a href="https://discord.gg/C76Mj5NQGj" class="btn" target="_blank">소방서 민원창구 이동</a>
-        </section>
-
-    </main>
-
-    <script src="script.js"></script>
 </body>
 </html>
