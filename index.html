@@ -3,91 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>동부소방서 민원창구</title>
+    <title>판다 - 개인 소개</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- 헤더 -->
     <header>
         <div class="container">
-            <h1 class="logo">동부소방서 민원창구</h1>
-            <nav>
-                <ul>
-                    <li><a href="#lobby">로비</a></li>
-                    <li><a href="#career">경력</a></li>
-                    <li><a href="#contact">1:1 문의</a></li>
-                    <li><a href="#sns">SNS</a></li>
-                </ul>
-            </nav>
+            <h1 class="logo">판다</h1>
         </div>
     </header>
 
-    <!-- 로비 섹션 -->
-    <section id="lobby">
-        <div class="container">
+    <section id="profile">
+        <div class="container profile-card">
             <img src="https://cdn.discordapp.com/attachments/1394979391938887692/1449072282369786007/IMG_4878.jpg?ex=693d913a&is=693c3fba&hm=9d88051a0419d5dd153cadd82ceca735089ca97a1b8075c4850e4b366c871b41&" alt="프로필 사진" class="profile-img">
-            <h2>안녕하세요!</h2>
-            <p>민원 관련 문의를 빠르게 처리해 드립니다.</p>
+            <h2>판다</h2>
+            <p><strong>생일:</strong> 10월 20일</p>
+            <p><strong>관심사:</strong> 게임, IT</p>
+            <p><strong>메일:</strong> <a href="mailto:edong651629@gmail.com">edong651629@gmail.com</a></p>
         </div>
     </section>
 
-    <!-- 경력 섹션 -->
-    <section id="career">
-        <div class="container">
-            <h2>경력</h2>
-            <ul>
-                <li>동화성의료원 6급 (관리팀장)</li>
-                <li>행정복지센터 6급 갑 (선임행정관, 현 행정실)</li>
-                <li>화성동부소방서 행정과장</li>
-            </ul>
-        </div>
-    </section>
-
-    <!-- 1:1 문의 섹션 -->
-    <section id="contact">
-        <div class="container">
-            <h2>1:1 문의</h2>
-            <form id="contactForm">
-                <input type="text" name="name" placeholder="이름" required>
-                <input type="email" name="email" placeholder="이메일" required>
-                <textarea name="message" placeholder="문의 내용을 입력해주세요" required></textarea>
-                <button type="submit">보내기</button>
-            </form>
-        </div>
-    </section>
-
-    <!-- SNS 섹션 -->
-    <section id="sns">
-        <div class="container">
-            <h2>SNS</h2>
-            <div class="sns-links">
-                <a href="https://discord.gg/C76Mj5NQGj" target="_blank">Discord</a>
-                <a href="https://www.youtube.com/@panda_LrOr7l" target="_blank">YouTube</a>
+    <section id="skills">
+        <div class="container skill-card">
+            <h2>스킬</h2>
+            <div class="skill">
+                <span>디스코드</span>
+                <div class="skill-bar">
+                    <div class="skill-fill" style="width: 90%;"></div>
+                </div>
             </div>
         </div>
     </section>
 
-    <script>
-        const form = document.getElementById("contactForm");
-        form.addEventListener("submit", async function(e) {
-            e.preventDefault();
-            const name = form.name.value;
-            const email = form.email.value;
-            const message = form.message.value;
-
-            const payload = {
-                content: `**문의**\n이름: ${name}\n이메일: ${email}\n내용: ${message}`
-            };
-
-            await fetch("https://discord.com/api/webhooks/1449075418513539264/r_JqXqlW1_U9qO1dYeh1uLVWVWC4OImBBugs86yf1HehB9ZkrjFlN3tuGG59ggNnSvlU", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(payload)
-            });
-
-            alert("문의가 전송되었습니다!");
-            form.reset();
-        });
-    </script>
+    <section id="sns">
+        <div class="container sns-card">
+            <h2>SNS</h2>
+            <a href="https://discord.gg/C76Mj5NQGj" target="_blank">Discord</a>
+            <a href="https://www.youtube.com/@panda_LrOr7l" target="_blank">YouTube</a>
+        </div>
+    </section>
 </body>
 </html>
